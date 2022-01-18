@@ -6,8 +6,13 @@ type ClockState = {
   time: Date;
 };
 
-class Clock extends React.Component<ClockState> {
-  constructor(props) {
+type AcceptedProps ={
+  testProp: string,
+  optionalProp?: string
+}
+
+class Clock extends React.Component<AcceptedProps, ClockState> {
+  constructor(props: AcceptedProps) {
     super(props)
         this.state={
             time: new Date()
@@ -20,9 +25,9 @@ class Clock extends React.Component<ClockState> {
     });
   }
 
-  componentWillMount() {
-    this.tick();
-  }
+//   componentWillMount() {
+//     this.tick();
+//   }
 
   componentDidMount() {
     setInterval(() => this.tick(), 1000);
@@ -32,6 +37,8 @@ class Clock extends React.Component<ClockState> {
     return (
       <div>
         <h1>{this.state.time.toLocaleTimeString()}</h1>
+        {/* <p>{this.props.testProp}</p>
+        <p>{this.props.optionalProp}</p> */}
       </div>
     );
   }
